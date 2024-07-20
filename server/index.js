@@ -16,6 +16,13 @@ const corsOptions = {
 // Use CORS middleware
 app.use(cors(corsOptions));
 
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+  res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+  next();
+});
+
+
 app.get('/', (req, res) => {
   console.log('Hello World');
   res.send('Hello World');

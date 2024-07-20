@@ -4,7 +4,8 @@ import sfiaImg from '../assets/home.svg';
 
 const Home = () => {
   const [category, setCategory] = useState('All Categories');
-  const [subcategory, setSubcategory] = useState('All Subcategories');
+  const [subcategory, setSubcategory] = useState('');
+  const [subcategories, setSubcategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,9 +14,33 @@ const Home = () => {
     // Fetch initial data here
   }, []);
 
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCategory(selectedCategory);
+    if (selectedCategory === 'All Categories') {
+      setSubcategories([]);
+      setSubcategory('');
+    } else {
+      // Fetch or set subcategories based on selectedCategory
+      const newSubcategories = getSubcategories(selectedCategory);
+      setSubcategories(newSubcategories);
+      setSubcategory(newSubcategories.length > 0 ? newSubcategories[0] : '');
+    }
+  };
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     // Implement search logic here
+  };
+
+  const getSubcategories = (category) => {
+    // Replace this with actual logic to fetch subcategories based on category
+    const subcategoryData = {
+      'Category 1': ['Subcategory 1-1', 'Subcategory 1-2'],
+      'Category 2': ['Subcategory 2-1', 'Subcategory 2-2'],
+      // Add more categories and subcategories as needed
+    };
+    return subcategoryData[category] || [];
   };
 
   return (
@@ -29,7 +54,7 @@ const Home = () => {
           <img src={sfiaImg} alt="Hero" />
         </div>
       </div>
-      
+
       <div className="wave-container">
         <svg viewBox="0 0 1428 174" xmlns="http://www.w3.org/2000/svg">
           <path fill="#fff" d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
@@ -42,16 +67,27 @@ const Home = () => {
         <div className="search-box">
           <div className="search-item">
             <label>Category :</label>
-            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+            <select value={category} onChange={handleCategoryChange}>
               <option>All Categories</option>
-              {/* Add more options here */}
+              <option>Category 1</option>
+              <option>Category 2</option>
+              {/* Add more categories as needed */}
             </select>
           </div>
           <div className="search-item">
             <label>Subcategory :</label>
-            <select value={subcategory} onChange={(e) => setSubcategory(e.target.value)}>
-              <option>All Subcategories</option>
-              {/* Add more options here */}
+            <select 
+              value={subcategory} 
+              onChange={(e) => setSubcategory(e.target.value)} 
+              disabled={category === 'All Categories'}
+            >
+              {category === 'All Categories' ? (
+                <option>All Subcategories</option>
+              ) : (
+                subcategories.map((subcat, index) => (
+                  <option key={index} value={subcat}>{subcat}</option>
+                ))
+              )}
             </select>
           </div>
           <div className="search-item">

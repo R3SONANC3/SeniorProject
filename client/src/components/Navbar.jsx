@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoSfia from '../assets/logo_sfia.png'
 import '../styles/Navbar.css';
+import Login from './Login'
 
 const Navbar = ({ authenticated }) => {
   const location = useLocation();
@@ -46,12 +47,7 @@ const Navbar = ({ authenticated }) => {
         </ul>
         {!authenticated && (
           <div className="auth-buttons">
-            <Link to="/login" className="login-button">
-              Login
-            </Link>
-            <Link to="/register" className="signup-button">
-              Sign up
-            </Link>
+            <Login />
           </div>
         )}
       </div>
