@@ -1,0 +1,160 @@
+.home {
+  font-family: Arial, sans-serif;
+}
+
+.hero {
+  background: linear-gradient(90deg, #0ea5e9 0%, #a5f3fc 100%);
+  color: white;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 60%;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.hero-image {
+  max-width: 40%;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wave-container {
+  position: relative;
+  background: linear-gradient(90deg, #0ea5e9 0%, #a5f3fc 100%);
+  height: 100px;
+}
+
+.wave-container svg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.search-container {
+  background-color: white;
+  padding: 2rem;
+  margin-top: -50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+}
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.search-item {
+  flex: 1;
+}
+
+.search-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.search-item select,
+.search-item input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.results-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.results-divider {
+  height: 2px;
+  background: linear-gradient(90deg, #0ea5e9 0%, #a5f3fc 100%);
+  width: 100px;
+  margin: 1rem auto;
+}
+
+.result-item {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.read-more {
+  background-color: #0ea5e9;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.no-results {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.page-link, .page-number {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-number.active {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-content, .hero-image {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+}
