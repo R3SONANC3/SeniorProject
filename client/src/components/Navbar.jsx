@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logoSfia from '../assets/logo_sfia.png'
 import '../styles/Navbar.css';
-import Login from './Login'
+import Login from './Login';
 
-const Navbar = ({ authenticated }) => {
+const Navbar = ({ onLogin, isLoggedIn }) => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
+  
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -45,11 +45,9 @@ const Navbar = ({ authenticated }) => {
             </Link>
           </li>
         </ul>
-        {!authenticated && (
           <div className="auth-buttons">
-            <Login />
+            {!isLoggedIn && <Login onLogin={onLogin} />}
           </div>
-        )}
       </div>
     </nav>
   );

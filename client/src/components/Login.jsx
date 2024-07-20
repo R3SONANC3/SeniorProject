@@ -3,38 +3,32 @@ import { GoogleLogin } from 'react-google-login';
 
 const clientId = '170385751378-3teihqn74b55q3nf4tc6srft4veslo9g.apps.googleusercontent.com';
 
-function Login() {
+function Login({ onLogin }) {
   const onSuccess = (response) => {
     console.log('Login Success:', response.profileObj);
-    // Handle the successful login here
+    onLogin(response.profileObj);
   };
 
   const onFailure = (response) => {
-    if (response.error === 'popup_closed_by_user') {
-      console.log('The login popup was closed by the user.');
-    } else {
-      console.log('Login Failed:', response);
-    }
+    console.log('Login Failed:', response);
   };
 
   return (
-    <>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Login"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
-        render={renderProps => (
-          <button 
-            style={renderProps.disabled ? { ...styles.button, ...styles.disabledButton } : styles.button} 
-            onClick={renderProps.onClick} 
-            disabled={renderProps.disabled}>
-            Login
-          </button>
-        )}
-      />
-    </>
+    <GoogleLogin
+      clientId={clientId}
+      buttonText="Login"
+      onSuccess={onSuccess}
+      onFailure={onFailure}
+      cookiePolicy={'single_host_origin'}
+      render={renderProps => (
+        <button 
+          style={renderProps.disabled ? { ...styles.button, ...styles.disabledButton } : styles.button} 
+          onClick={renderProps.onClick} 
+          disabled={renderProps.disabled}>
+          Login
+        </button>
+      )}
+    />
   );
 }
 
