@@ -18,10 +18,13 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <>
       <GoogleLogin
         clientId={clientId}
+        buttonText="Login"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        cookiePolicy={'single_host_origin'}
         render={renderProps => (
           <button 
             style={renderProps.disabled ? { ...styles.button, ...styles.disabledButton } : styles.button} 
@@ -30,11 +33,8 @@ function Login() {
             Login
           </button>
         )}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={'single_host_origin'}
       />
-    </div>
+    </>
   );
 }
 
