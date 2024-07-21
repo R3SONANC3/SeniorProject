@@ -1,12 +1,18 @@
 import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 
-const clientId = '170385751378-3teihqn74b55q3nf4tc6srft4veslo9g.apps.googleusercontent.com';
+const clientId = '170385751378-bbtp2rf09iorhsustgqors4r1tc7hf6n.apps.googleusercontent.com';
 
 function Login({ onLogin }) {
   const onSuccess = (response) => {
     console.log('Login Success:', response.profileObj);
-    onLogin(response.profileObj);
+    // ตรวจสอบว่า response.profileObj มี imageUrl หรือไม่
+    if (response.profileObj && response.profileObj.imageUrl) {
+      onLogin(response.profileObj);
+    } else {
+      console.error('Profile image URL not found in response');
+      // จัดการกรณีที่ไม่มี imageUrl
+    }
   };
 
   const onFailure = (response) => {
@@ -21,11 +27,11 @@ function Login({ onLogin }) {
       onFailure={onFailure}
       cookiePolicy={'single_host_origin'}
       render={renderProps => (
-        <button 
-          style={renderProps.disabled ? { ...styles.button, ...styles.disabledButton } : styles.button} 
-          onClick={renderProps.onClick} 
+        <button
+          style={renderProps.disabled ? { ...styles.button, ...styles.disabledButton } : styles.button}
+          onClick={renderProps.onClick}
           disabled={renderProps.disabled}>
-          Login
+          Login with Google
         </button>
       )}
     />

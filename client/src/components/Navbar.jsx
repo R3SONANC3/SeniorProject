@@ -4,14 +4,14 @@ import logoSfia from '../assets/logo_sfia.png'
 import '../styles/Navbar.css';
 import Login from './Login';
 
-const Navbar = ({ onLogin, isLoggedIn }) => {
+const Navbar = ({ onLogin, isLoggedIn, onToggleProfile, profile }) => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -45,9 +45,20 @@ const Navbar = ({ onLogin, isLoggedIn }) => {
             </Link>
           </li>
         </ul>
-          <div className="auth-buttons">
-            {!isLoggedIn && <Login onLogin={onLogin} />}
-          </div>
+        <div className="auth-buttons">
+          {!isLoggedIn ? (
+            <Login onLogin={onLogin} />
+          ) : profile && profile.imageUrl ? (
+            <img
+              src={profile.imageUrl}
+              alt="Profile"
+              style={{ width: '40px', height: '40px', borderRadius: '50%', cursor: 'pointer' }}
+              onClick={onToggleProfile}
+            />
+          ) : (
+            <button onClick={onToggleProfile}>Profile</button>
+          )}
+        </div>
       </div>
     </nav>
   );
