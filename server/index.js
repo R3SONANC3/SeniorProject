@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { initMySQL } = require('./config');
+const { initMySQL } = require('./config,js');
 require('dotenv').config();
 
 const app = express();
@@ -51,7 +51,22 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong!');
 });
 
-initMySQL().then(() => {
+app.get('/data', async (req, res) => {
+  try {
+    const [rows] = await req.app.locals.db.execute('SELECT * FROM competencyDatabase.new_table');
+    res.status(200).json(rows);
+  } catch (error) {
+    console.error("Database query error:", error);
+    res.status(500).send('Error fetching data');
+  }
+});
+
+
+// Initialize MySQL connection and start the server
+initMySQL().then(connection => {
+  // Save the connection to the app locals for future use
+  app.locals.db = connection;
+
   app.listen(PORT, () => {
     console.log(`Server started at port ${PORT}`);
   });

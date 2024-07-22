@@ -1,7 +1,7 @@
 // DownloadComponent.js
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import '../styles/Download.css';
+import '../../styles/Download.css';
 
 const Download = () => {
   const ENV_REST_API = ''; // สมมติว่าเก็บ URL ไว้ใน .env file

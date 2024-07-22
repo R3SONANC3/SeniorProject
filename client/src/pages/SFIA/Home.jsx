@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Home.css';
-import sfiaImg from '../assets/home.svg';
+import '../../styles/Home.css';
+import sfiaImg from '../../assets/home.svg';
 
 const Home = () => {
   const [category, setCategory] = useState('All Categories');

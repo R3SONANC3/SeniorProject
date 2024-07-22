@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Download from './pages/Download';
+import Home from './pages/SFIA/Home';
+import Download from './pages/SFIA/Download';
+import About from './pages/About';
 import ProfileDisplay from './components/ProfileDisplay';
 import './styles/Styles.css';
 import { gapi } from 'gapi-script';
@@ -19,7 +20,6 @@ function App() {
 
   const handleLogin = (userProfile) => {
     setProfile(userProfile);
-    setShowProfile(true);
   };
 
   const handleLogout = () => {
@@ -58,6 +58,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/download" element={<Download />} />
+          <Route path="/about" element={<About />}/>
         </Routes>
         <Footer />
       </div>
